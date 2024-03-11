@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Page Title</title>
+</head>
+<body>
+  <script>
+    console.log("hello world!");
+    console.log(playGame());
+
+    function getComputerChoice(){
+      var options= ["rock","papper","scissors"]
+      var i =  Math.floor(Math.random() * options.length);
+      console.log("computer choose"+" "+options[i]);
+      return options[i];
+    }
+
+    function evalue (pc,player){
+      if (pc=="rock"){
+        if(player=="rock"){return "tie"}
+        else if(player=="scissors"){
+          console.log("you lose! rock beats scissors");
+          return "pc" ;
+        }
+        else if(player=="papper"){
+          console.log("you win!, papper beats rock");
+          return "p";
+        }
+      }
+      else if (pc=="papper"){
+        if(player=="papper"){return "tie";
+      }
+        else if(player=="rock"){
+          console.log("you lose!, papper beats rock");
+          return "pc";
+        }
+        else if(player=="scissors"){
+          console.log("you win! scissors beats papper");
+          return "p";
+        }
+      }
+      else if (pc=="scissors"){
+        if(player=="scissors"){return "its a tie";}
+        else if(player=="rock"){
+          console.log("you win!, rock beats scissors");
+          return "p";
+        }
+        else if(player=="papper"){
+          console.log("you lose! scissors beats papper");
+          return "pc";
+        }
+      } 
+    }
+
+
+    function playRound(rounds){
+      pcPoints=0;
+      playerPoints=0;
+      for (var i=1; i<= rounds; i++) {
+        var userInput = prompt("chooose an option");
+        userInput = userInput.toLowerCase();
+        console.log("u choose"+" "+userInput);
+        
+        if((userInput !== "rock") && (userInput !== "papper") && (userInput !== "scissors")){
+          userInput = prompt("choose a correct option");
+          userInput =userInput.toLowerCase();
+          console.log("u choose"+" "+userInput);
+        } 
+
+        var point= evalue(getComputerChoice(),userInput,pcPoints,playerPoints);
+
+       if ( point == "p"){
+        playerPoints++;
+       }
+       else if (point == "pc"){
+        pcPoints++;
+       }
+      
+      }
+
+      if (pcPoints>playerPoints){return "computer wins :( with"+" "+pcPoints+" "+"points";}
+      else return "player wins :) with" +" "+playerPoints+" "+"points";
+    }
+
+    function playGame(){
+        var rounds = prompt("choose rounds");
+        return playRound(rounds);
+    }
+  </script>
+</body>
+</html>
